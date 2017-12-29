@@ -171,6 +171,6 @@ def remove(taskid):
 
 secvar = os.urandom(15)
 app.secret_key = secvar
-print('new one')
+
 if __name__ == "__main__":
 	app.run()
