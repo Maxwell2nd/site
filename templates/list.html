@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> The list </title>
+ </head>
+ <body>
+  <br>Hello , {{user}}!
+  <p> That's your task list ! </p>
+  {% if todos|length != 0 %}
+  <table border = "2">
+  {% for task in todos %}
+  <tr><td>{{task.id}}</td><td>{{task.do.replace("'","")}}</td><td><a href="/remove/{{task.id}}">remove</a></td><td><a href="/edit/{{task.id}}">edit</a></td><td><a href="/image/{{task.id}}">attach image</a></td><td>
+  {% if task.image %}
+  <img src="/display/{{task.image}}" alt="ur img" height="100" width="100">
+  {% endif %}
+  </td></tr>
+  {% endfor %} 
+  </table>
+  {% elif todos|length == 0 %}
+  <br> Your task list is empty. Consider adding tasks to it!
+  {% endif %}
+  <br><a href="/add">Add more tasks!</a>
+ </body>
+</html> 

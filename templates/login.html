@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+ <head> 
+  <title>Log in!</title>
+ </head>
+ <body>
+  <form action="/login" method="post">Username <input type="text" name="user"><br>Password <input type="password" name="pass">
+  <br><input type="submit" value="log in">
+  <p>Please, enter the credentials accurately!</p>
+  <p>Alternatively, you can create an <a href="/registration">account</a> for free !</p>
+  {% if check %}
+  <p><a href="/list">To the list</a>
+  {% endif %}
+ </body>
+</html>

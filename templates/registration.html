@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>Create new account!</title>
+ </head>
+ <body>
+  Please, fill out the blank.
+  <form action="/registration" method="post">
+  <br>Your nickname <input type="text" name="user">
+  <br>Your e-mail <input type="text" name="mail">
+  <br>Your password <input type="password" name="password">
+  <br>Confirm the password <input type="password" name="passconfirm">
+  <br><input type="submit" value="Create account!"></form>
+  <br>Have an account? <a href="/login">Login</a>!
+  {% if check %}
+  <br><a href="/list">To the list</a>.
+  {% endif %}
+ </body>
+</html>

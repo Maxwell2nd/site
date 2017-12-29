@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>Attach the image to your task!</title>
+ </head>
+ <body>
+  Please, choose the image you want to attach to your task.
+  <form action="/image/{{image}}" method="post" enctype=multipart/form-data>
+  <br><input type="file" name="image" accept=".png,.img,.jpg">
+  <br><input type="submit" value="attach">
+  <br>Or you can go <a href="/list">back</a>.
+  </form>
+ </body>
+</html>
