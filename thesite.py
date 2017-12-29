@@ -173,5 +173,3 @@ secvar = os.urandom(15)
 app.secret_key = secvar
 if __name__ == "__main__":
 	app.run()
-
-print('hello')
