@@ -10,7 +10,7 @@ cwd = os.getcwd()
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///%s/site.db' % cwd
 UPLOAD_FOLDER = 'images'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-if not os.path.isfile(app.config['UPLOAD_FOLDER']):
+if os.path.isfile(app.config['UPLOAD_FOLDER']):
 	os.makedirs(app.config['UPLOAD_FOLDER'])
 
 class User(db.Model):
@@ -58,6 +58,7 @@ def allowed_file(filename):
 
 @app.route("/")
 def home():
+	pdb.set_trace()
 	return render_template('home.html')
 
 @app.route("/login", methods=['POST','GET'])
