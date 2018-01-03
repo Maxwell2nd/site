@@ -1,7 +1,7 @@
 from flask import Flask, request, redirect, url_for, render_template, session, escape, flash, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
-import pdb, os, uuid
+import pdb, os, uuid, requests
 
 app = Flask(__name__)
 db = SQLAlchemy(app)
@@ -58,7 +58,6 @@ def allowed_file(filename):
 
 @app.route("/")
 def home():
-	pdb.set_trace()
 	return render_template('home.html')
 
 @app.route("/login", methods=['POST','GET'])
