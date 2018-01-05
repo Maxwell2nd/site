@@ -1,7 +1,8 @@
 from flask import Flask, request, redirect, url_for, render_template, session, escape, flash, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
-import pdb, os, uuid, requests
+from urllib.parse import quote
+import pdb, os, uuid, requests , sys, lxml.html
 
 app = Flask(__name__)
 db = SQLAlchemy(app)
@@ -51,6 +52,10 @@ def allowed_user(tasknum):
 		if check.user_id == session['usersession']:
 			return True
 	return False
+
+def search(url):
+	data = requests.get(url).text
+	return data
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -136,6 +141,17 @@ def list():
 		return render_template('list.html', todos = records, user = name)
 	return redirect(url_for('login'))
 
+@app.route("/searchYT", methods=['POST','GET'])
+def searchYT():
+	if is_authenticated():
+		if request.method == "POST":
+			url = quote(request.form['search'], safe='')
+			doc = lxml.html.document_fromstring(search('https://www.youtube.com/results?search_query='+url))
+			vids = doc.xpath('//a[contains(@class, "yt-uix-tile-link")]')
+			return render_template('search.html',videos=vids)
+		return render_template('search.html')
+	return redirect(url_for('login'))
+	
 @app.route("/display/<image>")
 def uploaded_file(image):
 	if is_authenticated():

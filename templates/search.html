@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+ <head> 
+  <title>Search the video on YouTube™!</title>
+ </head>
+ <body>
+  {% if request.method == "GET" %}
+  Enter the name of the video you want to search on YouTube™
+  <form name="searchform" action="/searchYT" method="post"><br><input name="search" type="text"><input type="submit"></form>
+  <br>Or you can go <a href="/list">back</a>.
+  {% endif %}
+  {% if request.method == "POST" %}
+  {% if videos|length != 0 %}
+  {% for video in videos %}
+  <br>{{video.get('title')}} → <a href ="https://www.youtube.com/{{video.get('href')}}">Go to video</a>
+  {% endfor %}
+  {% endif %}
+  {% if videos|length == 0 %}
+  <br> No results found.
+  {% endif %}
+  <br>Or you can go <a href="/list">back</a>.
+  {% endif %}
+ </body>
+</html>
+
