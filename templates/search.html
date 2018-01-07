@@ -12,6 +12,7 @@
   {% if request.method == "POST" %}
   {% if videos|length != 0 %}
   {% for video in videos %}
+  <br><img src="http://img.youtube.com/vi/{{video.get('href').split('=')[1]}}/0.jpg" alt="thumb">
   <br>{{video.get('title')}} → <a href ="https://www.youtube.com/{{video.get('href')}}">Go to video</a>
   {% endfor %}
   {% endif %}
